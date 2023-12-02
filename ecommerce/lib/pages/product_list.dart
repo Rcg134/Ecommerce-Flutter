@@ -1,5 +1,3 @@
-import 'dart:js_util';
-
 import 'package:flutter/material.dart';
 
 class Productlist extends StatefulWidget {
@@ -66,13 +64,22 @@ class _ProductlistState extends State<Productlist> {
                 ],
               ),
             ),
-            const Positioned(
+            Positioned(
               top: 10,
               right: 10,
-              child: Icon(
-                Icons.star,
-                color: Color.fromARGB(255, 239, 208, 206),
-                size: 30,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    islike = !islike;
+                  });
+                },
+                child: Icon(
+                  Icons.star,
+                  color: islike
+                      ? const Color.fromARGB(255, 255, 241, 82)
+                      : const Color.fromARGB(255, 137, 136, 136),
+                  size: 30,
+                ),
               ),
             ),
           ],
