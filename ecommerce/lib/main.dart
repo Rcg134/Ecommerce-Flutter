@@ -16,14 +16,23 @@ class MyApp extends StatelessWidget {
       home: const HomePage(),
       theme: ThemeData(
         fontFamily: 'lato',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
+          primary: Colors.red,
+          secondary: Colors.white,
+        ),
         scaffoldBackgroundColor: const Color.fromARGB(255, 231, 228, 228),
-        appBarTheme: const AppBarTheme(
-          color: Colors.red,
+        appBarTheme: const AppBarTheme(color: Colors.red),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide.none,
+          ),
+          prefixIconColor: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
-
-      // Other theme configurations...
     );
   }
 }
