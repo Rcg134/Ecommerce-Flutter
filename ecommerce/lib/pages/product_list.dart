@@ -26,7 +26,7 @@ class _ProductlistState extends State<Productlist> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        color: const Color.fromARGB(255, 239, 151, 151),
+        color: const Color.fromARGB(255, 243, 128, 128),
         elevation: 10,
         child: Stack(
           children: [
