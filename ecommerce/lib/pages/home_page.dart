@@ -1,9 +1,6 @@
-import 'dart:ffi';
-
 import 'package:ecommerce/Data/global_variables.dart';
 import 'package:ecommerce/pages/product_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/xml_templates.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

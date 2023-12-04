@@ -1,4 +1,4 @@
-import 'package:ecommerce/pages/home_page.dart';
+import 'package:ecommerce/Data/global_variables.dart';
 import 'package:ecommerce/pages/product_details_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Shopping App',
       debugShowCheckedModeBanner: false,
-      home: const ProductDetail(),
+      home: ProductDetail(
+        product: products[0],
+      ),
       theme: ThemeData(
         fontFamily: 'lato',
         colorScheme: ColorScheme.fromSeed(
