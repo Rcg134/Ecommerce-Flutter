@@ -1,4 +1,5 @@
 import 'package:ecommerce/Data/global_variables.dart';
+import 'package:ecommerce/pages/product_details_page.dart';
 import 'package:ecommerce/pages/product_list.dart';
 import 'package:flutter/material.dart';
 
@@ -138,10 +139,21 @@ class _HomePageState extends State<HomePage> {
                 final iimage = products[index]['imageURL'];
                 final iproduct = products[index]['title'];
                 final iprice = products[index]['price'];
-                return Productlist(
-                  productName: iproduct.toString(),
-                  image: iimage.toString(),
-                  price: iprice.toString(),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ProductDetail(product: product);
+                        },
+                      ),
+                    );
+                  },
+                  child: Productlist(
+                    productName: iproduct.toString(),
+                    image: iimage.toString(),
+                    price: iprice.toString(),
+                  ),
                 );
               },
             ),

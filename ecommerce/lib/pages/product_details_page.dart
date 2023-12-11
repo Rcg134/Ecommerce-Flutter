@@ -1,5 +1,6 @@
 import 'package:ecommerce/Data/global_variables.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/ios.dart';
 
 class ProductDetail extends StatefulWidget {
   final Map<String, Object> product;
@@ -26,6 +27,7 @@ class _ProductDetailState extends State<ProductDetail> {
     final title = widget.product['title'];
     final image = widget.product['imageURL'];
     final price = widget.product['price'];
+    final description = widget.product['description'];
     final List<String> variant =
         (widget.product['model'] as List).cast<String>();
 
@@ -42,7 +44,9 @@ class _ProductDetailState extends State<ProductDetail> {
           ),
         ),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
@@ -74,104 +78,128 @@ class _ProductDetailState extends State<ProductDetail> {
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
               ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: SizedBox(
-                  child: Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 40),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                title.toString().toUpperCase(),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 25),
-                              ),
-                              Text(
-                                '₱ $price',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 25),
-                              )
-                            ],
-                          ),
+              child: SizedBox(
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 40),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              title.toString().toUpperCase(),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            Text(
+                              '₱ $price',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )
+                          ],
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            'Available Variant',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15),
-                          ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          'Available Variant',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
                         ),
-                        SizedBox(
-                          height: 50,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: variant.length,
-                            itemBuilder: (context, index) {
-                              final filter = variant[index];
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 5, right: 5),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      selectedFilter = variant[index];
-                                    });
-                                  },
-                                  child: Chip(
-                                    backgroundColor: selectedFilter == filter
-                                        ? Theme.of(context).colorScheme.primary
-                                        : Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                    label: Text(
-                                      filter,
-                                      style: TextStyle(
-                                        color: selectedFilter == filter
-                                            ? Colors.white
-                                            : Colors.black,
-                                      ),
-                                    ),
-                                    labelStyle: const TextStyle(
-                                        fontWeight: FontWeight.bold),
-                                    padding: const EdgeInsets.all(12),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
+                      ),
+                      SizedBox(
+                        height: 50,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: variant.length,
+                          itemBuilder: (context, index) {
+                            final filter = variant[index];
+                            return Padding(
+                              padding: const EdgeInsets.only(left: 5, right: 5),
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedFilter = variant[index];
+                                  });
+                                },
+                                child: Chip(
+                                  backgroundColor: selectedFilter == filter
+                                      ? Theme.of(context).colorScheme.primary
+                                      : Theme.of(context).colorScheme.secondary,
+                                  label: Text(
+                                    filter,
+                                    style: TextStyle(
+                                      color: selectedFilter == filter
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                   ),
+                                  labelStyle: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                  padding: const EdgeInsets.all(12),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
                                 ),
-                              );
-                            },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 10, top: 10),
+                        child: Text(
+                          'Description',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: SizedBox(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                description.toString(),
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
                           ),
                         ),
-                        const Text(
-                          'Sample',
-                          style: TextStyle(fontSize: 50),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              foregroundColor: Colors.white,
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              minimumSize: Size(
+                                MediaQuery.of(context).size.width,
+                                40,
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add_shopping_cart),
+                                Text('Add To Cart'),
+                              ],
+                            ),
+                          ),
                         ),
-                        const Text(
-                          'Sample',
-                          style: TextStyle(fontSize: 50),
-                        ),
-                        const Text(
-                          'Sample',
-                          style: TextStyle(fontSize: 50),
-                        ),
-                        const Text(
-                          'Sample',
-                          style: TextStyle(fontSize: 50),
-                        ),
-                        const Text(
-                          'Sample',
-                          style: TextStyle(fontSize: 50),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
