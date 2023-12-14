@@ -1,6 +1,5 @@
-import 'package:ecommerce/Data/global_variables.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/ios.dart';
+
 
 class ProductDetail extends StatefulWidget {
   final Map<String, Object> product;

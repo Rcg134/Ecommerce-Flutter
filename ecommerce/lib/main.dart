@@ -1,6 +1,5 @@
-import 'package:ecommerce/Data/global_variables.dart';
+
 import 'package:ecommerce/pages/home_page.dart';
-import 'package:ecommerce/pages/product_details_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
